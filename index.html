@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+	
+	<script type="text/javascript" src="
+https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
+</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js">
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>Inspirational Quotes</title>
+</head>
+
+<!--WEBPAGE-->
+
+<body ng-controller="bodyMaster">
+<audio autoplay loop>
+	<source src="TinySpark.mp3">
+</audio>	
+
+<!-- quote submission form -->
+
+	<div class="popBox" ng-hide="hideMe">
+		<h3 style="color:white">Enter a Quote</h3>
+		<input ng-model="author" placeholder="Author Name">
+		<br>
+		<textarea ng-model="text" placeholder="Your Quote"></textarea>
+		<br>
+		<button ng-click="quoteSubmit(author,text)" style="submit">Submit to page</button>
+
+	</div>
+<div class="col-1-3 filler"></div>
+
+<!-- CONTENT -->
+
+<div class="col-2-3 filler imageBack">
+	
+	
+	<!-- header -->
+
+	<div>
+		<h1> Inspirational Quotes for a Great Day... </h1>
+		<h2><br>...today!&nbsp&nbsp</h2>
+	</div>
+
+	<!-- random popup -->
+
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> A Pleasant Thought...
+	</button>
+
+	<!-- Modal -->
+
+	<div class="modal fade modalBack" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document" style="margin-top: 300px">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">This Quote</h4>
+	      </div>
+	      <div class="modal-body">
+	        "Looks like I picked the wrong day to stop sniffing glue."
+	      </div>
+	      <div class="modal-footer">
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- quotes -->
+
+	<button ng-click="revealer()" class="btn btn-primary btn-lg">Submit a great quote</button>
+	<div>
+			<ul class="quoteBacker" ng-repeat="thing in quoteBox">
+			<h3>{{thing.text}}</h3>
+			<p>&nbsp;-- {{thing.author}} --</p>
+			<p ng-click="starsCounter()"> Rating: {{thing.stars}} </p>
+			</ul>
+	</div>
+
+</div>
+<!-- right column -->
+
+<div class="col-1-3 filler">
+</div>
+</body>
+</html>

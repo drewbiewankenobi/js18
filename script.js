@@ -23,8 +23,18 @@ angular.module("myApp").controller("bodyMaster", ["$scope", "quoteFactory", func
 			var Quote = quoteFactory.QuoteConstructor
 			s.quoteBox = quoteFactory.quoteBox
 			s.hideMe = true
-			s.myQuote = new Quote("","I like pie.")
-			s.quoteBox.push(s.myQuote)
+			s.rando = 0
+			s.myQuote = new Quote("R.A. Salvatore","Are you more trapped by the way the world sees you, or by the way you see the world seeing you?")
+			s.quote1 = new Quote("Spoon Boy", "Do not try and bend the spoon, that's impossible. Instead, only try to realize the truth...there is no spoon.")
+			s.quote2 = new Quote("McCroskey", "Looks like I picked the wrong week to stop sniffing glue.")
+			s.quoteBox.push(s.myQuote, s.quote1, s.quote2)
+
+			//functions--------->
+
+			s.randoQuote = function(){
+				s.rando = Math.floor(Math.random() * s.quoteBox.length)
+			
+			}
 
 			s.revealer = function() {
 				s.hideMe = !s.hideMe
@@ -32,11 +42,9 @@ angular.module("myApp").controller("bodyMaster", ["$scope", "quoteFactory", func
 			}
 
 			s.quoteSubmit = function(author, text) {
-				console.log(s.author, s.text)
 				if (s.author && s.text){
 					var userQuote = new Quote(author, text)
 					s.quoteBox.push(userQuote)
-					console.log(userQuote)
 					s.hideMe = !s.hideMe
 					s.author = ""
 					s.text = ""
@@ -46,7 +54,13 @@ angular.module("myApp").controller("bodyMaster", ["$scope", "quoteFactory", func
 			}
 
 			s.starsCounter = function(thing){
-				s.quoteBox.stars = thing.stars + 1
+			 if(this.thing.stars < 5){
+			 this.thing.stars +=1}
+			}
+
+			s.starsDowner = function(thing){
+				if(this.thing.stars >0){
+			 this.thing.stars -=1}
 			}
 			
 }])

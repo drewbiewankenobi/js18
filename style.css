@@ -1,6 +1,5 @@
 body{
 	margin: 0px;
-	font-family: georgia;
 }
 
 
@@ -36,6 +35,30 @@ button {
 	background-color: #2ecc71;
 	color: white;
 	border-color: #2ecc71;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	text-decoration: none
+}
+
+
+#tooltip1 { position: relative; }
+#tooltip1 a span { display: none; color: #FFFFFF; }
+#tooltip1 a:hover span { 
+	text-align: center;
+	display: block; 
+	position: relative; 
+	width: 150px; 
+	background-color: #87CEEB; 
+	height: 50px;
+	/*top: -20px; */
+	color: #FFFFFF; 
+	padding: 0 5px; 
+	border-radius: 5px;
 }
 
 .quoteBacker {
@@ -92,3 +115,19 @@ button {
 	z-index: 10;
 }
 
+.max{
+	max-width: 80%;
+	max-height: 70%;
+	height: 30%;
+	width:30%;
+}
+
+.authorBacker {
+	background-image: url("https://wallpaperscraft.com/image/mountains_ridge_relief_green_woods_horizon_clouds_bottom_valley_coast_ocean_62661_3840x2400.jpg");
+	background-size: stretch;
+}
+
+.bottomer{
+	position: fixed;
+	bottom: 1vh;
+}

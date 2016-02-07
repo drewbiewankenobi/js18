@@ -2,10 +2,10 @@
 <html ng-app="myApp">
 
 <head>
-	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 	<script type="text/javascript" src="
-https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
-</script>
+	https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
+	</script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js">
 	</script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.js"></script>
@@ -18,9 +18,9 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
 <!--WEBPAGE-->
 
 <body ng-controller="bodyMaster">
-<audio autoplay loop>
-	<source src="TinySpark.mp3">
-</audio>	
+	<!-- <audio autoplay loop>
+		<source src="TinySpark.mp3">
+	</audio>	 -->
 
 <!-- quote submission form -->
 
@@ -28,10 +28,10 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
 		<h3 style="color:white">Enter a Quote</h3>
 		<input ng-model="author" placeholder="Author Name">
 		<br>
-		<textarea ng-model="text" placeholder="Your Quote"></textarea>
+		<textarea class="max" ng-model="text" placeholder="Your Quote"></textarea>
 		<br>
-		<button ng-click="quoteSubmit(author,text)" style="submit">Submit to page</button>
-
+		<button ng-click="quoteSubmit(author,text)" style="submit">Submit to Page</button>
+		<button ng-click="revealer()" style="submit">Cancel</button>
 	</div>
 <div class="col-1-3 filler"></div>
 
@@ -49,7 +49,7 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
 
 	<!-- random popup -->
 
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> A Pleasant Thought...
+	<button ng-click = "randoQuote()" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> A Pleasant Thought...
 	</button>
 
 	<!-- Modal -->
@@ -59,12 +59,11 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">This Quote</h4>
-	      </div>
-	      <div class="modal-body">
-	        "Looks like I picked the wrong day to stop sniffing glue."
+	        <h4 class="modal-title" id="myModalLabel"> 
+	        {{ quoteBox[rando].text  }}</h4>
 	      </div>
 	      <div class="modal-footer">
+	      	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{{quoteBox[rando].author }}
 	      </div>
 	    </div>
 	  </div>
@@ -74,10 +73,10 @@ https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js">
 
 	<button ng-click="revealer()" class="btn btn-primary btn-lg">Submit a great quote</button>
 	<div>
-			<ul class="quoteBacker" ng-repeat="thing in quoteBox">
+			<ul class="quoteBacker" ng-repeat="thing in quoteBox | orderBy: '-stars'">
 			<h3>{{thing.text}}</h3>
-			<p>&nbsp;-- {{thing.author}} --</p>
-			<p ng-click="starsCounter()"> Rating: {{thing.stars}} </p>
+			<p id="tooltip1"><a href="authorpage.html">&nbsp;-- {{thing.author}} --<span>Click for More From This Author</span></a></p>
+			<p><span ng-click="starsCounter()" class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span><span ng-click="starsDowner()" class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>{{thing.stars}} </p>
 			</ul>
 	</div>
 
